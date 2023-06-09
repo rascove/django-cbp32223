@@ -10,8 +10,10 @@ def register(request):
 		
 		if form.is_valid():
 			form.save()
-			messages.success(request, f'Your account has been created! Now you can login!')
-
+			messages.success(request, f'Your account has been created! Now you can login!')	
+		else:
+			messages.warning(request, 'Unable to create account')
+		
 		return redirect('login')
 	else:
 		form = UserRegisterForm()
