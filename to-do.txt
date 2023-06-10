@@ -1,8 +1,5 @@
-Model-less form
-Email backend
 Reset password
-Issue type use choices
-Slug, boolean, and many-to-many
+Boolean and many-to-many fields
 Context data for class-based views
 Composite primary key
 RedirectView
