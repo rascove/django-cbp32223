@@ -1,9 +1,8 @@
-from django.contrib.auth.models import User
-from rest_framework.serializers import HyperlinkedModelSerializer, SlugRelatedField
+from rest_framework.serializers import ModelSerializer, ReadOnlyField
 from itreporting.models import Issue
 
-class IssueSerializer(HyperlinkedModelSerializer):
-    author = SlugRelatedField(slug_field = 'username', queryset = User.objects.all())
+class IssueSerializer(ModelSerializer):
+    author = ReadOnlyField(source = 'author.username')
 
     class Meta:
         model = Issue

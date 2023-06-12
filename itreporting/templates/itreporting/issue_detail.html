@@ -8,7 +8,7 @@
                 <a class="mr-2" href="{% url 'itreporting:user-issues' object.author.username %}">{{ object.author.profile }}</a>
                 <small class="text-muted">{{ object.date_submitted }}</small>
             </div>
-            <h2>{{ object.type }} in {{ object.room }}</h2>
+            <h2>{{ object }}</h2>
             <p class="article-content">{{ object.details }}</p>
             {% if object.author == user %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'itreporting:issue-update' object.id %}">Update</a>

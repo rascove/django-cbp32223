@@ -1,5 +1,0 @@
-Reset password
-Slug, boolean, and many-to-many fields
-Context data for class-based views
-Composite primary key
-RedirectView
