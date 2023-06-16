@@ -16,8 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ADMINS = [('Satrya Fajri Pratama', 's.pratama@shu.ac.uk')]
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -111,6 +109,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 DEFAULT_FROM_EMAIL = 's.pratama@shu.ac.uk'
+
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+ADMINS = [('Satrya Fajri Pratama', DEFAULT_FROM_EMAIL)]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

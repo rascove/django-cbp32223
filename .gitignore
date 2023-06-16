@@ -3,3 +3,6 @@
 to-do.txt
 Dockerfile
 .dockerignore
+emails
+media
+db.sqlite3
