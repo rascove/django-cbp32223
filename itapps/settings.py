@@ -110,6 +110,8 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
+DEFAULT_FROM_EMAIL = 's.pratama@shu.ac.uk'
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
