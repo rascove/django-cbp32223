@@ -147,13 +147,17 @@ USE_TZ = True
 
 # MEDIA_URL = '/media/'
 
+AZURE_SA_NAME = os.environ['AZURE_SA_NAME']
+
+AZURE_SA_KEY = os.environ['AZURE_SA_KEY']
+
 DEFAULT_FILE_STORAGE = 'itapps.storages.AzureMediaStorage'
 
 STATICFILES_STORAGE = 'itapps.storages.AzureStaticStorage'
 
-STATIC_URL = 'https://cbp32223storage.blob.core.windows.net/static/'
+STATIC_URL = f'https://{AZURE_SA_NAME}.blob.core.windows.net/static/'
 
-MEDIA_URL = 'https://cbp32223storage.blob.core.windows.net/media/'
+MEDIA_URL = f'https://{AZURE_SA_NAME}.blob.core.windows.net/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
