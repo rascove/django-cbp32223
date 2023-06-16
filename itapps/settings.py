@@ -161,9 +161,9 @@ AZURE_SA_NAME = os.environ['AZURE_SA_NAME']
 
 AZURE_SA_KEY = os.environ['AZURE_SA_KEY']
 
-DEFAULT_FILE_STORAGE = 'itapps.storages.AzureMediaStorage'
+DEFAULT_FILE_STORAGE = 'itapps.azure_storages.AzureMediaStorage'
 
-STATICFILES_STORAGE = 'itapps.storages.AzureStaticStorage'
+STATICFILES_STORAGE = 'itapps.azure_storages.AzureStaticStorage'
 
 STATIC_URL = f'https://{AZURE_SA_NAME}.blob.core.windows.net/static/'
 
