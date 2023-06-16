@@ -1,16 +1,25 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.10
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3.10-slim
 
-# Make a new directory to put our code in.
-RUN mkdir /code
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
 
-# Change the working directory.
-WORKDIR /code
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
 
-# Copy to code folder
-COPY . /code/
-# Install the requirements.
-RUN pip install -r requirements.txt
+# Install pip requirements
+RUN apt-get update
+RUN apt-get install -y python3-dev default-libmysqlclient-dev gcc
+COPY requirements.txt .
+RUN python3 -m pip install -r requirements.txt
 
-# Run the application:
-CMD python manage.py runserver 0.0.0.0:8000
+WORKDIR /app
+COPY . /app
+
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
+
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "itapps.wsgi"]

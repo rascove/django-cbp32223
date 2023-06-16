@@ -1,3 +1,5 @@
 .venv
 *.pyc
 to-do.txt
+Dockerfile
+.dockerignore

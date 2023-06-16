@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'rest_framework',
     'rest_framework.authtoken',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -140,12 +141,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = BASE_DIR / 'media'
 
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
+DEFAULT_FILE_STORAGE = 'itapps.storages.AzureMediaStorage'
+
+STATICFILES_STORAGE = 'itapps.storages.AzureStaticStorage'
+
+STATIC_URL = 'https://cbp32223storage.blob.core.windows.net/static/'
+
+MEDIA_URL = 'https://cbp32223storage.blob.core.windows.net/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

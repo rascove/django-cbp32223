@@ -12,13 +12,13 @@ import requests
 def home(request):
 	url = 'https://api.openweathermap.org/data/2.5/weather?q={},{}&units=metric&appid={}'
 	api_key = 'c3585aab49fd664d43ac3cda44ca1170'
-	cities = ['Sheffield', 'London', 'Manchester', 'Leeds']
+	cities = [('Sheffield', 'UK'), ('Melaka', 'Malaysia'), ('Bandung', 'Indonesia')]
 	weather_data = []
 
 	for city in cities:
-		city_weather = requests.get(url.format(city, 'UK', api_key)).json() # Request the API data and convert the JSON to Python data types, replace X, Y, and Z with actual city name, country code, and API key
+		city_weather = requests.get(url.format(city[0], city[1], api_key)).json() # Request the API data and convert the JSON to Python data types, replace X, Y, and Z with actual city name, country code, and API key
 		weather = {
-			'city': city_weather['name'],
+			'city': city_weather['name'] + ', ' + city_weather['sys']['country'],
 			'temperature': city_weather['main']['temp'],
 			'description': city_weather['weather'][0]['description'],
 		}
