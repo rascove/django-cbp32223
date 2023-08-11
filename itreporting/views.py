@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.views.generic.edit import FormView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from itapps.settings import OWM_API_KEY
 from django.contrib import messages
 from .forms import ContactForm
 from .models import Issue
@@ -11,12 +12,11 @@ import requests
 # Create your views here.
 def home(request):
 	url = 'https://api.openweathermap.org/data/2.5/weather?q={},{}&units=metric&appid={}'
-	api_key = 'c3585aab49fd664d43ac3cda44ca1170'
 	cities = [('Sheffield', 'UK'), ('Melaka', 'Malaysia'), ('Bandung', 'Indonesia')]
 	weather_data = []
 
 	for city in cities:
-		city_weather = requests.get(url.format(city[0], city[1], api_key)).json() # Request the API data and convert the JSON to Python data types, replace X, Y, and Z with actual city name, country code, and API key
+		city_weather = requests.get(url.format(city[0], city[1], OWM_API_KEY)).json() # Request the API data and convert the JSON to Python data types, replace X, Y, and Z with actual city name, country code, and API key
 		weather = {
 			'city': city_weather['name'] + ', ' + city_weather['sys']['country'],
 			'temperature': city_weather['main']['temp'],

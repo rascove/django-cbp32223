@@ -22,14 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-6#hwt0#cfw29a05+b572emd8@n_thf3liy1klr)hmyq+_5)-lj')
 
+WEBSITE_HOSTNAME = os.environ.get('WEBSITE_HOSTNAME', None)
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'WEBSITE_HOSTNAME' not in os.environ
+DEBUG = WEBSITE_HOSTNAME == None
 
 if DEBUG:
     ALLOWED_HOSTS = []
 else:
-    ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']]
-    CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']]
+    ALLOWED_HOSTS = [WEBSITE_HOSTNAME]
+    CSRF_TRUSTED_ORIGINS = [f'https://{WEBSITE_HOSTNAME}']
 
 
 # Application definition
@@ -95,6 +97,8 @@ DATABASES = {
         'PASSWORD': os.environ['AZURE_DB_PASSWORD'],
     }
 }
+
+OWM_API_KEY = os.environ['OWM_API_KEY']
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
